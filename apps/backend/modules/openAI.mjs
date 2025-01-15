@@ -18,35 +18,32 @@ const template = `
 `;
 
 const prompt = ChatPromptTemplate.fromMessages([
-  ["ai", template],
-  ["human", "{question}"],
+    ["ai", template],
+    ["human", "{question}"],
 ]);
 
-
 const model = new ChatOpenAI({
-  openAIApiKey: process.env.OPENAI_API_KEY || "-",
-  modelName: process.env.OPENAI_MODEL || "davinci",
-  temperature: 0.2,
+    openAIApiKey: process.env.OPENAI_API_KEY || "-",
+    modelName: process.env.OPENAI_MODEL || "davinci",
+    temperature: 0.2,
 });
 const parser = StructuredOutputParser.fromZodSchema(
-  z.object({
-    messages: z.array(
-      z.object({
-        text: z.string().describe("Text to be spoken by the AI"),
-        facialExpression: z
-          .string()
-          .describe(
-            "Facial expression to be used by the AI. Select from: smile, sad, angry, surprised, funnyFace, and default"
-          ),
-        animation: z
-          .string()
-          .describe(
-            `Animation to be used by the AI. Select from: Idle, TalkingOne, TalkingThree, SadIdle, 
+    z.object({
+        messages: z.array(
+            z.object({
+                text: z.string().describe("Text to be spoken by the AI"),
+                facialExpression: z
+                    .string()
+                    .describe(
+                        "Facial expression to be used by the AI. Select from: smile, sad, angry, surprised, funnyFace, and default"
+                    ),
+                animation: z.string().describe(
+                    `Animation to be used by the AI. Select from: Idle, TalkingOne, TalkingThree, SadIdle, 
             Defeated, Angry, Surprised, DismissingGesture, and ThoughtfulHeadShake.`
-          ),
-      })
-    ),
-  })
+                ),
+            })
+        ),
+    })
 );
 
 const openAIChain = prompt.pipe(model).pipe(parser);
