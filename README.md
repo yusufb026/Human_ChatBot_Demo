@@ -13,7 +13,7 @@ defined in the following technologies:
 
 This avatar include the following technologies;
 
-* Use the Speech Recognition and ChatGPT API for interacting with the OpenAI API: OpenAI's "davinci" model
+* Use the Speech Recognition and ChatGPT API for interacting with the OpenAI API: OpenAI's "gpt-4o" model
 
 * Integrates with Eleven Labs and Rhubarb Lip-Sync to generate the client integration interface
 
@@ -29,6 +29,7 @@ Before using this system, ensure you have the following prerequisites:
 1. **OpenAI Subscription:** You must have an active subscription with OpenAI. If you don't have one, you can create it [here](https://openai.com/product).
 2. **Eleven Labs Subscription:** You need to have a subscription with Eleven Labs. If you don't have one yet, you can sign up [here](https://elevenlabs.io/).
 3. **Rhubarb Lip-Sync:** Download the latest version of Rhubarb Lip-Sync compatible with your operating system from the official [Rhubarb Lip-Sync repository](https://github.com/DanielSWolf/rhubarb-lip-sync/releases). Once downloaded, create a `/bin` directory in the backend and move all the contents of the unzipped `rhubarb-lip-sync.zip` into it.
+4. **Download ffmeg** Download the latest version of ffmpeg compatible with your operating system from the official [ffmpeg website](https://www.ffmpeg.org/) or using the package manager. 
 
 ### Installation
 
@@ -63,7 +64,13 @@ npm run start or yarn start
 
 Open [http://localhost:5173/](http://localhost:5173/) with your browser to see the result.
 
-5. Create a .env file in the root `/apps/backend/` of the project and add the following environment variables:
+5. Create a .env file in the root `/apps/backend/` of the project using the `.env.example` and add the following environment variables:
+
+```bash
+cd apps/backend
+cp .env.example .env
+```
+
 ## How it Operates
 The system operates through two primary workflows, depending on whether the user input is in text or audio form:
 
@@ -90,7 +97,7 @@ OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 
 # Elevenlabs
 ELEVEN_LABS_API_KEY=<YOUR_ELEVEN_LABS_API_KEY>
-ELVEN_LABS_VOICE_ID=<YOUR_ELEVEN_LABS_VOICE_ID>
+ELEVEN_LABS_VOICE_ID=<YOUR_ELEVEN_LABS_VOICE_ID>
 ELEVEN_LABS_MODEL_ID=<YOUR_ELEVEN_LABS_MODEL_ID>
 ```
 

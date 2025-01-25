@@ -24,7 +24,7 @@ const prompt = ChatPromptTemplate.fromMessages([
 
 const model = new ChatOpenAI({
 	openAIApiKey: process.env.OPENAI_API_KEY || '-',
-	modelName: process.env.OPENAI_MODEL || 'davinci',
+	modelName: process.env.OPENAI_MODEL || 'gpt-4o-mini',
 	temperature: 0.2,
 });
 const parser = StructuredOutputParser.fromZodSchema(
