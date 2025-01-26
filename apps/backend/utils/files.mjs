@@ -1,6 +1,5 @@
 import { exec } from 'child_process';
 import { promises as fs } from 'fs';
-import { domain, subdomain, id } from './constant.mjs';
 
 const execCommand = ({ command }) => {
 	return new Promise((resolve, reject) => {
@@ -21,10 +20,8 @@ const audioFileToBase64 = async ({ fileName }) => {
 	return data.toString('base64');
 };
 
-const apiHashURL = `${domain}/${subdomain}/${id}`;
 export {
 	execCommand,
 	readJsonTranscript,
 	audioFileToBase64,
-	apiHashURL,
 };

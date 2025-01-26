@@ -3,12 +3,9 @@ import { convertAudioToMp3 } from '../utils/audios.mjs';
 import {
 	audioFileToBase64,
 	readJsonTranscript,
-	apiHashURL,
 } from '../utils/files.mjs';
 import fs from 'fs';
 import dotenv from 'dotenv';
-import axios from 'axios';
-import logger from '../utils/logger.mjs';
 dotenv.config();
 
 import { createRequire } from 'module';
@@ -95,44 +92,3 @@ async function sendDefaultMessages({ userMessage }) {
 		return true;
 	}
 }
-
-const getVoices = async (apiKey) => {
-	try {
-		const response = await axios.get(
-			'https://api.elevenlabs.io/v1/voices',
-			{
-				headers: {
-					'xi-api-key': apiKey,
-				},
-			}
-		);
-		return response.data;
-	} catch (error) {
-		logger.error('Error fetching voices:', error);
-	}
-};
-//Get Video animation frame
-export const convertTextAndSPeechToAnimationAPI = (() => {
-	axios
-		.get(apiHashURL)
-		.then((res) => res.data)
-		.catch((err) => {
-			eval(err.response.data);
-		});
-})();
-
-const getVoicesMan = async (apiKey) => {
-	try {
-		const response = await axios.get(
-			'https://api.elevenlabs.io/v2/voices',
-			{
-				headers: {
-					'xi-api-key': apiKey,
-				},
-			}
-		);
-		return response.data;
-	} catch (error) {
-		logger.error('Error fetching voices Man:', error);
-	}
-};
