@@ -4,6 +4,7 @@ import {
 	readJsonTranscript,
 	audioFileToBase64,
 } from '../utils/files.mjs';
+import logger from '../utils/logger.mjs';
 
 const MAX_RETRIES = 10;
 const RETRY_DELAY = 2000;
@@ -52,7 +53,7 @@ const lipSync = async ({ messages }) => {
 					fileName: `audios/message_${index}.json`,
 				});
 			} catch (error) {
-				console.error(
+				logger.error(
 					`Error while getting phonemes for message ${index}:`,
 					error
 				);

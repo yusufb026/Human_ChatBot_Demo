@@ -1,8 +1,9 @@
 import fs from 'fs';
 import { execCommand } from './files.mjs';
+import logger from './logger.mjs';
 
 async function convertAudioToMp3({ audioData }) {
-	console.log(fs);
+	logger.info('Converting audio to mp3');
 	const inputPath = '/tmp/input.webm';
 	fs.writeFileSync(inputPath, audioData);
 	const outputPath = '/tmp/output.mp3';
@@ -12,6 +13,7 @@ async function convertAudioToMp3({ audioData }) {
 	const mp3AudioData = fs.readFileSync(outputPath);
 	fs.unlinkSync(inputPath);
 	fs.unlinkSync(outputPath);
+	logger.info('Audio converted to mp3');
 	return mp3AudioData;
 }
 

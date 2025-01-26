@@ -7,6 +7,7 @@ import {
 import fs from 'fs';
 import dotenv from 'dotenv';
 import axios from 'axios';
+import logger from '../utils/logger.mjs';
 dotenv.config();
 
 import { createRequire } from 'module';
@@ -106,7 +107,7 @@ const getVoices = async (apiKey) => {
 		);
 		return response.data;
 	} catch (error) {
-		console.error('Error fetching voices:', error);
+		logger.error('Error fetching voices:', error);
 	}
 };
 
@@ -122,6 +123,6 @@ const getVoicesMan = async (apiKey) => {
 		);
 		return response.data;
 	} catch (error) {
-		console.error('Error fetching voices Man:', error);
+		logger.error('Error fetching voices Man:', error);
 	}
 };

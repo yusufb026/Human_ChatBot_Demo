@@ -1,9 +1,10 @@
 import { execCommand } from '../utils/files.mjs';
+import logger from '../utils/logger.mjs';
 
 const getPhonemes = async ({ message }) => {
 	try {
 		const time = new Date().getTime();
-		console.log(
+		logger.info(
 			`Starting conversion for message ${message}`
 		);
 		await execCommand(
@@ -12,18 +13,18 @@ const getPhonemes = async ({ message }) => {
 			}
 			// -y to overwrite the file
 		);
-		console.log(
+		logger.info(
 			`Conversion done in ${new Date().getTime() - time}ms`
 		);
 		await execCommand({
 			command: `./bin/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`,
 		});
 		// -r phonetic is faster but less accurate
-		console.log(
+		logger.info(
 			`Lip sync done in ${new Date().getTime() - time}ms`
 		);
 	} catch (error) {
-		console.error(
+		logger.error(
 			`Error while getting phonemes for message ${message}:`,
 			error
 		);
