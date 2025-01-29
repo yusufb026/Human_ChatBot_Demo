@@ -20,7 +20,8 @@ async function convertAudioToText({ audioData }) {
 	const mp3AudioData = await convertAudioToMp3({
 		audioData,
 	});
-	const outputPath = '/tmp/output.mp3';
+	const timestamp = Date.now();
+	const outputPath = `/tmp/output_${timestamp}.mp3`;
 	fs.writeFileSync(outputPath, mp3AudioData);
 	const loader = new OpenAIWhisperAudio(outputPath, {
 		clientOptions: { apiKey: openAIApiKey },

@@ -4,9 +4,10 @@ import logger from './logger.mjs';
 
 async function convertAudioToMp3({ audioData }) {
 	logger.info('Converting audio to mp3');
-	const inputPath = '/tmp/input.webm';
+	const timestamp = Date.now();
+	const inputPath = `/tmp/input_${timestamp}.webm`;
 	fs.writeFileSync(inputPath, audioData);
-	const outputPath = '/tmp/output.mp3';
+	const outputPath = `/tmp/output_${timestamp}.mp3`;
 	await execCommand({
 		command: `ffmpeg -i ${inputPath} ${outputPath}`,
 	});
