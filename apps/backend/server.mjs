@@ -15,7 +15,7 @@ logger.info('Starting API server');
 const app = express();
 app.use(express.json());
 app.use(cors());
-const port = 3000;
+const port = process.env.PORT;
 
 async function processOpenAIFlow({ userMessage, isAudio = false, audioData }) {
     try {

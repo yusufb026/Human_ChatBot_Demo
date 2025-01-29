@@ -6,10 +6,6 @@ import chalk from 'chalk';
 const { combine, timestamp, printf, colorize } = format;
 
 // Ensure logs directory exists
-const logDir = 'logs';
-if (!fs.existsSync(logDir)) {
-    fs.mkdirSync(logDir);
-}
 
 // Define the log format, including timestamp and message
 const logFormat = printf(({ level, message, timestamp, ...metadata }) => {
@@ -37,7 +33,6 @@ const logger = createLogger({
     ),
     transports: [
         new transports.Console(),
-        new transports.File({ filename: path.join(logDir, 'app.log') }),
     ],
     level: 'debug', // Minimum log level (can be 'info', 'warn', 'error', etc.)
 });
